@@ -1,0 +1,43 @@
+Lav et lille spil om hvordan du har det
+Med at du ikke syntes der er nok tid til at opfylde alle de mål du har, i den tidsramme du vil nå dem i
+
+WHERE ARE MY KEYS!?
+Puzzle spil hvor man kaster physics objekter rundt for at finde sine nøgler. Bliver mere og mere absurd længere inde i spillet.
+
+Features der mangler:
+DONEZO 	At kunne gå rundt (Standard Unity 1st person controller?)
+At kunne kaste ting.
+Levels!
+
+C:\Users\Simon\Documents\_Unity Projects\WHERE ARE MY KEYS
+
+Pick-up check. Snaps to fixed distance from players (maybe goes slightly transparent? Look into later)
+
+Types of picking up:
+	Object becomes "ghostly" and goes through things until dropped.
+		Distance from camera remains the same, no rotation.
+		Snaps to a fixed distance, no rotation
+	Object becomes ghostly until taken out of any colliders.
+		Same distance, no rotation
+		Fixed distance, no rotation.
+	Object moves the middle of object to nearest desired point while keeping collissions
+		As a child of the cam
+			Same distance
+				With or without rotation
+			fixed distance
+				With out without rotation
+		Physics-based (like lerp, but with a position)
+			Same options as above.
+Distance that object is from player can also vary from object to object. Could be inherent to objects or tags they are given.
+
+Shoot out a raycast to check if there's anything in front of the player (and give it edge-glow if there is)
+If the player presses the pick-up key
+	Objects is set as a child of player object (maybe? Is it even necessary?)
+	Player accesses object to find inherent trait for how far away from player it should float
+	Object position-lerps to that position as best as possible (as it'll calculate from middle of object)
+	Rotation is either unhandled or completely stopped. Depends on what works best.
+		As in, would things fall down if their center of gravity is off-balance? Who knows...
+
+Todo: Get a highlight shader going, then find a way to enable/disable when the object is close enough and is mouse over.
+Consider exaggerating targetDirection vector for more wacky results when dragging shit around. And to maybe avoid hitting the player.
+	Could just make object and player not collide, though. Would save some hassle.
