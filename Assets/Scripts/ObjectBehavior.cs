@@ -21,6 +21,11 @@ public class ObjectBehavior : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+
+	}
+
+	void FixedUpdate()
+	{
 		if (IsPickedUp)
 		{
 			LerpFunction(TargetPosition);
@@ -34,16 +39,35 @@ public class ObjectBehavior : MonoBehaviour
 
 	void LerpFunction(Vector3 trgtpos)
 	{
-		GetComponent<Rigidbody>().useGravity = false;
-		GetComponent<Rigidbody>().angularDrag = 0.5f;
-		targetDirection = trgtpos - transform.position;
-		Debug.Log(targetDirection);
+		//Set-up rules for when object is being handled
+		//---------------------------------------------
 
+		//Turn gravity off so the object doesn't sag in our grip.
+		GetComponent<Rigidbody>().useGravity = false;
+		//Increase drag to slow rotation down faster.
+		GetComponent<Rigidbody>().angularDrag = 0.75f;
+
+		//Set up the target direction. Effectively this is just the difference in target position and current position.
+		targetDirection = (trgtpos - transform.position);
+
+		//Move object to point with an overshoot effect
 		if (Mathf.Sqrt(targetDirection.sqrMagnitude) > 0.01f)
 		{
-			GetComponent<Rigidbody>().velocity = targetDirection;
+			GetComponent<Rigidbody>().AddForce(targetDirection * 0.9f, ForceMode.Impulse); /*velocity = targetDirection;*/
+			GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity * 0.9f;
+		}
+		else
+		{
+			GetComponent<Rigidbody>().velocity = Vector3.zero;
 		}
 
-		//GetComponent<Rigidbody>().AddForce(targetDirection,ForceMode.Force);
+		//Stop rotation under certain angular velocity
+		if (GetComponent<Rigidbody>().angularVelocity.magnitude < 0.05f)
+		{
+			GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+		}
+
+		Debug.Log("Linear velocity: " + GetComponent<Rigidbody>().velocity.magnitude);
+		Debug.Log("Angular velocity: " + GetComponent<Rigidbody>().angularVelocity.magnitude);
 	}
 }
