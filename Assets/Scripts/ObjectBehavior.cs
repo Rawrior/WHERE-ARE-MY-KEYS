@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class ObjectBehavior : MonoBehaviour
 {
 	public bool IsPickedUp;
 	public Vector3 TargetPosition;
 	public float DistanceFromCamera;
+	public Material RestMaterial;
+	public Material HoverMaterial;
+	public Material PickedUpMaterial;
 
 	private Vector3 targetDirection;
 
@@ -19,10 +21,10 @@ public class ObjectBehavior : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update ()
-	{
+	//void Update ()
+	//{
 
-	}
+	//}
 
 	void FixedUpdate()
 	{
