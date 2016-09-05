@@ -13,7 +13,7 @@ public class PlayerBehavior : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
 	{
 		Debug.DrawRay(transform.position, transform.forward*3, Color.red);
 
@@ -24,16 +24,18 @@ public class PlayerBehavior : MonoBehaviour
 	void RaycastMethod(LayerMask layermask)
 	{
 		RaycastHit RayHit;
-		Physics.Raycast(transform.position, Vector3.forward, out RayHit, 3f, layermask);
-		//Physics.Raycast(transform.position, Vector3.forward*3, out RayHit, 100f, layermask);
+		if (Physics.Raycast(transform.position, transform.forward * 3, out RayHit, 3f, layermask))
+		{
+			//Physics.Raycast(transform.position, Vector3.forward*3, out RayHit, 100f, layermask);
 
-		//TODO: Fix this shit. It's returning a nullreferenceexception from the editor. Something about the RayHit not being assigned? Research it and find out.
-		Debug.Log(RayHit.collider.name);
+			//TODO: Fix this shit. It's returning a nullreferenceexception from the editor. Something about the RayHit not being assigned? Research it and find out.
+			Debug.Log(RayHit.collider.name);
 
-		//if (RayHit.transform.tag == "Pickupable")
-		//{
-		//	LastHit = RayHit.collider.gameObject;
-		//	RayHit.collider.GetComponent<MeshRenderer>().material = RayHit.collider.GetComponent<ObjectBehavior>().HoverMaterial;
-		//}
+			if (RayHit.transform.tag == "Pickupable")
+			{
+				LastHit = RayHit.collider.gameObject;
+				RayHit.collider.GetComponent<MeshRenderer>().material = RayHit.collider.GetComponent<ObjectBehavior>().HoverMaterial;
+			}
+		}
 	}
 }
