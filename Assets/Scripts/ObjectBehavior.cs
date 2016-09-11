@@ -30,6 +30,7 @@ public class ObjectBehavior : MonoBehaviour
 	{
 		if (IsPickedUp)
 		{
+			//Debug.Log(TargetPosition);
 			LerpFunction(TargetPosition);
 		}
 		else
@@ -69,7 +70,7 @@ public class ObjectBehavior : MonoBehaviour
 			GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 		}
 
-		Debug.Log("Linear velocity: " + GetComponent<Rigidbody>().velocity.magnitude);
-		Debug.Log("Angular velocity: " + GetComponent<Rigidbody>().angularVelocity.magnitude);
+		//Debug.Log("Linear velocity: " + GetComponent<Rigidbody>().velocity.magnitude);
+		//Debug.Log("Angular velocity: " + GetComponent<Rigidbody>().angularVelocity.magnitude);
 	}
 }
