@@ -39,5 +39,9 @@ If the player presses the pick-up key
 		As in, would things fall down if their center of gravity is off-balance? Who knows...
 
 Todo: Get a highlight shader going, then find a way to enable/disable when the object is close enough and is mouse over.
+	HOW TO DO THE HIGHLIGHT: Get an edge detection outline shader that can be applied to a material. Then figure out a way to get that material toggled when they player hovers over the object.
+		It would be super amazingly awesome, but it's a shit-ton of work for a small prototype when considering that the easy methods don't like low-poly objects (as the game would have), and the "correct"
+		methods are super complicated and I don't know how to do them. So for now, it's just a simple color-change between rest/hover/pick-up.
+
 Consider exaggerating targetDirection vector for more wacky results when dragging shit around. And to maybe avoid hitting the player.
 	Could just make object and player not collide, though. Would save some hassle.
