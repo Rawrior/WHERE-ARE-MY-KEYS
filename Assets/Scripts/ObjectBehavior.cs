@@ -17,7 +17,7 @@ public class ObjectBehavior : MonoBehaviour
 		IsPickedUp = false;
 		TargetPosition = Vector3.zero;
 		targetDirection = Vector3.zero;
-		DistanceFromCamera = 2f;
+		//DistanceFromCamera = 2f;
 	}
 	
 	// Update is called once per frame

@@ -23,7 +23,7 @@ public class PlayerBehavior : MonoBehaviour
 	{
 		Debug.DrawRay(transform.position, transform.forward*3, Color.red);
 
-		if (RaycastMethod(Mask) && Input.GetKey(KeyCode.Mouse0))
+		if (!isHoldingObject && RaycastMethod(Mask) && Input.GetKey(KeyCode.Mouse0))
 		{
 			Debug.Log("Trying to pick up object.");
 			isHoldingObject = true;
