@@ -25,28 +25,28 @@ public class PlayerBehavior : MonoBehaviour
 
 		if (!isHoldingObject && RaycastMethod(Mask) && Input.GetKey(KeyCode.Mouse0))
 		{
-			Debug.Log("Trying to pick up object.");
+			//Debug.Log("Trying to pick up object.");
 			isHoldingObject = true;
 		}
 
 		if (LastObjectHit != null && Input.GetKeyUp(KeyCode.Mouse0))
 		{
-			Debug.Log("Trying to drop object");
+			//Debug.Log("Trying to drop object");
 			isHoldingObject = false;
-			Debug.Log("Setting the material");
+			//Debug.Log("Setting the material");
 			LastObjectHit.GetComponent<MeshRenderer>().material = LastObjectHit.GetComponent<ObjectBehavior>().RestMaterial;
-			Debug.Log("Setting the picked-up bool to false");
+			//Debug.Log("Setting the picked-up bool to false");
 			LastObjectHit.GetComponent<ObjectBehavior>().IsPickedUp = false;
 		}
 
 		if (isHoldingObject)
 		{
-			Debug.Log("Setting target position");
+			//Debug.Log("Setting target position");
 			LastObjectHit.GetComponent<ObjectBehavior>().TargetPosition =
 				transform.position + transform.forward * LastObjectHit.GetComponent<ObjectBehavior>().DistanceFromCamera;
-			Debug.Log("Setting the material");
+			//Debug.Log("Setting the material");
 			LastObjectHit.GetComponent<MeshRenderer>().material = LastObjectHit.GetComponent<ObjectBehavior>().PickedUpMaterial;
-			Debug.Log("Setting the picked-up bool to true");
+			//Debug.Log("Setting the picked-up bool to true");
 			LastObjectHit.GetComponent<ObjectBehavior>().IsPickedUp = true;
 		}
 
@@ -103,7 +103,6 @@ public class PlayerBehavior : MonoBehaviour
 			//Debug.Log("Changing material to rest material");
 			LastHit.GetComponent<MeshRenderer>().material = LastHit.GetComponent<ObjectBehavior>().RestMaterial;
 			LastHit = null;
-			Debug.Log("Returning false");
 			return false;
 		}
 
